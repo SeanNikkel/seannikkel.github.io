@@ -43,7 +43,7 @@ a {
 .main {
     background-color: black;
     max-width: 1000px;
-    padding: 50px 100px;
+    padding: 10px 100px 50px;
     margin: auto;
     margin-top: 10px
 }
