@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #202020;
+    font-family: roboto;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.header {
+    text-align: center;
+    background-color: black;
+}
+
+.nav {
+    text-align: center;
+    background-color: black;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.nav li {
+    display: inline-block;
+}
+
+.nav li:hover {
+    background-color: #101010;
+}
+
+.nav li a {
+    display: block;
+    padding: 10px 20px;
+}
+
+.main {
+    background-color: black;
+    max-width: 1000px;
+    padding: 50px 100px;
+    margin: auto;
+    margin-top: 10px
+}
+
+dt a {
+    color: dodgerblue;
+    text-decoration: underline;
+}
+dt a:active {
+    color: darkblue;
+}
