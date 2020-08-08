@@ -5,53 +5,74 @@
 }
 
 body {
-    background-color: #202020;
+    background-color: rgb(32, 32, 32);
     font-family: roboto;
     color: white;
 }
 
-a {
+header {
+    text-align: center;
+    background-color: rgb(16, 16, 16);
+    padding: 10px 0px;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    background-color: rgba(16, 16, 16, 0.7);
+    list-style: none;
+    padding-left: 0px;
+    /*border-top: 1px solid rgb(32, 32, 32);*/
+}
+
+nav a, header a {
     text-decoration: none;
     color: white;
 }
 
-.header {
-    text-align: center;
-    background-color: black;
-}
-
-.nav {
-    text-align: center;
-    background-color: black;
-    list-style: none;
-    padding-left: 0px;
-}
-
-.nav li {
+nav a {
     display: inline-block;
-}
-
-.nav li:hover {
-    background-color: #101010;
-}
-
-.nav li a {
-    display: block;
     padding: 10px 20px;
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
 }
 
-.main {
-    background-color: black;
+nav a:hover {
+    background-color: rgb(64, 64, 64);
+}
+
+nav a:active {
+    transition: 0s;
+    background-color: white;
+    color: black;
+}
+
+section {
+    background-color: rgb(16, 16, 16);
     max-width: 1000px;
-    padding: 10px 100px 50px;
+    padding: 50px 100px;
     margin: auto;
     margin-top: 10px
 }
 
-dt a {
+section a {
     color: dodgerblue;
     text-decoration: underline;
+    transition: color 0.2s;
 }
-dt a:active {
+
+section a:active {
     color: darkblue;
+    transition: 0s;
+}
+
+iframe {
+    max-width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
