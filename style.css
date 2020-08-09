@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: rgb(32, 32, 32);
     font-family: roboto;
@@ -12,7 +16,7 @@ body {
 
 header {
     text-align: center;
-    background-color: rgb(16, 16, 16);
+    background-color: rgba(0, 0, 0, .6);
     padding: 10px 0px;
 }
 
@@ -20,10 +24,9 @@ nav {
     position: sticky;
     top: 0;
     text-align: center;
-    background-color: rgba(16, 16, 16, 0.7);
+    background-color: rgba(16, 16, 16, 0.8);
     list-style: none;
-    padding-left: 0px;
-    /*border-top: 1px solid rgb(32, 32, 32);*/
+    z-index: 10;
 }
 
 nav a, header a {
@@ -38,7 +41,7 @@ nav a {
 }
 
 nav a:hover {
-    background-color: rgb(64, 64, 64);
+    background-color: rgba(64, 64, 64, 0.8);
 }
 
 nav a:active {
@@ -48,9 +51,9 @@ nav a:active {
 }
 
 section {
-    background-color: rgb(16, 16, 16);
+    background-color: rgba(0, 0, 0, .6);
     max-width: 1000px;
-    padding: 50px 100px;
+    padding: 25px;
     margin: auto;
     margin-top: 10px
 }
@@ -66,13 +69,42 @@ section a:active {
     transition: 0s;
 }
 
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+@keyframes project-intro {
+    from {
+        opacity: 0;
+        top: 50px;
+    }
+    to {
+        opacity: 1;
+        top: 0px;
+    }
+}
+
+.project-container {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    animation: project-intro 1s;
+    animation-fill-mode: both;
+}
+
+.project-container div {
+    margin: 10px;
+    padding: 20px;
+    background-color: rgb(32, 32, 32);
+}
+
 iframe {
     max-width: 100%;
 }
 
-@media screen and (max-width: 600px) {
-    section {
-        padding-left: 20px;
-        padding-right: 20px;
+@media screen and (max-width: 720px) {
+    .project-container {
+        width: 100%;
     }
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
 	<meta charset="UTF-8">
 	<title>Sean's Website</title>
@@ -9,60 +8,84 @@
 	<meta name="description" content="Personal website to host projects and info about me.">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
-	<header>
+	<header id="home">
 		<h1><a href="https://seannikkel.com">Sean Nikkel</a></h1>
 		<strong>Programmer | Game Developer</strong>
 	</header>
 	<!-- dragging makes anchors stuck on active -->
-	<nav ondragstart="return false;" ondrop="return false;">
-		<!-- avoid whitespace between list elements -->
-		<a href="#">Home</a><a href="#">About</a><a href="#">Academic Projects</a><a href="#">Personal Projects</a>
+	<nav id="nav" ondragstart="return false;" ondrop="return false;">
+		<a href="#home" onclick="return jumpTo('home');">Home</a><!-- avoid whitespace
+		--><a href="#about" onclick="return jumpTo('about');"">About</a><!-- avoid whitespace
+		--><a href="#academic" onclick="return jumpTo('academic');">Academic Projects</a><!-- avoid whitespace
+		--><a href="#personal" onclick="return jumpTo('personal');">Personal Projects</a>
 	</nav>
+	<section id="about">
+		<h2>!! WORK IN PROGRESS !!</h2>
+	</section>
+	<section id="academic">
+		<h2>Academic Projects</h2>
+		<div class="project-container">
+			<div>
+				<h3>Nohra</h3>
+				Tech director<br>
+				Team of 14<br>
+				Custom engine<br><br>
+				<a href="https://store.steampowered.com/app/1338250/Nohra/" target="_blank">Steam page</a>
+			</div>
+		</div><!-- avoid whitespace
+		--><div class="project-container">
+			<div>
+				<h3>Javelin</h3>
+				Tech director<br>
+				Team of 5<br>
+				Custom engine<br><br>
+				<a href="https://games.digipen.edu/games/javelin" target="_blank">DigiPen page</a>
+			</div>
+		</div><!-- avoid whitespace
+		--><div class="project-container">
+			<div>
+				<h3>Keeper of the Realms</h3>
+				Tech director<br>
+				Team of 3<br>
+				Custom engine<br><br>
+				<a href="https://games.digipen.edu/games/keeper-of-the-realms" target="_blank">DigiPen page</a>
+			</div>
+		</div>
+	</section>
+	<section id="personal">
+		<h2>Personal Projects</h2>
+		<div class="project-container">
+			<div>
+				<h3>Tome</h3>
+				Sole dev<br>
+				Unreal Engine 4<br><br>
+				<a href="https://sean-nikkel.itch.io/tome" target="_blank">Itch.io page</a>
+			</div>
+		</div><!-- avoid whitespace
+		--><div class="project-container">
+			<div>
+				<h3>Voxel</h3>
+				Sole dev<br>
+				Custom engine<br><br>
+				<a href="https://github.com/SeanNikkel/Voxel" target="_blank">Github page</a>
+			</div>
+		</div>
+	</section>
 	<section>
-		<h2 style="text-align:center;margin-bottom:20px">Work in progress</h2>
-		Nohra: <a href="https://store.steampowered.com/app/1338250/Nohra/" target="_blank">Steam page</a><br>
-		Tech director, team of 14<br>
-		Custom engine<br>
-		<br>
-		Tome: <a href="https://sean-nikkel.itch.io/tome" target="_blank">Itch.io page</a><br>
-		Sole dev<br>
-		Unreal Engine 4<br>
-		<br>
-		Voxel: <a href="https://github.com/SeanNikkel/Voxel" target="_blank">Github page</a><br>
-		Sole dev<br>
-		Custom engine<br>
-		<br>
-		Javelin: <a href="https://games.digipen.edu/games/javelin" target="_blank">DigiPen page</a><br>
-		Tech director, team of 5<br>
-		Custom engine<br>
-		<br>
-		Keeper of the Realms: <a href="https://games.digipen.edu/games/keeper-of-the-realms" target="_blank">DigiPen page</a><br>
-		Tech director, team of 3<br>
-		Custom engine<br>
-		<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id quam aliquam, posuere libero a, tincidunt nisl. Sed varius massa id urna luctus dapibus. Suspendisse risus nulla, condimentum et porta in, lacinia sagittis metus. Suspendisse ut diam efficitur, condimentum felis id, aliquam nisl. Quisque fringilla lacus a sapien vulputate placerat vitae sit amet sapien. Aliquam lobortis lectus a ultricies malesuada. In hac habitasse platea dictumst. Curabitur ac elit mattis, congue lectus quis, molestie lorem. Vivamus pellentesque eros eu ipsum porta tempor. Maecenas pretium, lorem at dapibus volutpat, libero lorem sagittis risus, tincidunt tincidunt magna justo faucibus nibh. Duis eget efficitur leo, eget feugiat magna. Phasellus finibus tellus quis convallis pharetra. Nullam commodo ornare lectus a facilisis. Pellentesque dignissim blandit nisl ac ullamcorper. Proin pharetra diam ut odio interdum scelerisque.
-
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id quam aliquam, posuere libero a, tincidunt nisl. Sed varius massa id urna luctus dapibus. Suspendisse risus nulla, condimentum et porta in, lacinia sagittis metus. Suspendisse ut diam efficitur, condimentum felis id, aliquam nisl. Quisque fringilla lacus a sapien vulputate placerat vitae sit amet sapien. Aliquam lobortis lectus a ultricies malesuada. In hac habitasse platea dictumst. Curabitur ac elit mattis, congue lectus quis, molestie lorem. Vivamus pellentesque eros eu ipsum porta tempor. Maecenas pretium, lorem at dapibus volutpat, libero lorem sagittis risus, tincidunt tincidunt magna justo faucibus nibh. Duis eget efficitur leo, eget feugiat magna. Phasellus finibus tellus quis convallis pharetra. Nullam commodo ornare lectus a facilisis. Pellentesque dignissim blandit nisl ac ullamcorper. Proin pharetra diam ut odio interdum scelerisque.
 		Donec nibh neque, tincidunt vitae feugiat sed, elementum at ipsum. Fusce suscipit, odio in facilisis lacinia, mauris justo mollis sem, non luctus metus leo vitae lacus. Sed condimentum iaculis cursus. In eu tempor lorem. Vestibulum imperdiet libero arcu, sit amet ultrices purus rhoncus id. Quisque rhoncus odio vel enim fringilla, quis iaculis dui mattis. Mauris pulvinar dolor vel augue aliquet suscipit. Maecenas elementum eu tortor sed congue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-
 		Suspendisse eu orci sed ante maximus aliquet. Quisque ac ligula id urna vestibulum semper eget ut quam. Maecenas ac nisi sodales mi pretium aliquet. Mauris non magna id lectus posuere vulputate. Morbi dictum vestibulum felis, vitae eleifend quam venenatis ut. Donec est nunc, suscipit vel purus eget, congue mollis massa. Vestibulum placerat sapien sagittis, dapibus enim a, pharetra urna. Pellentesque egestas sed quam cursus egestas.
-
 		Quisque leo velit, iaculis id tempus et, elementum non leo. Maecenas elementum ex in enim volutpat, egestas convallis nibh ullamcorper. Proin tempus ligula eget luctus euismod. Duis eget tellus ut turpis efficitur vestibulum. Maecenas nec efficitur elit. Sed in erat ut mauris sagittis facilisis quis non leo. Mauris pulvinar, est sed aliquet cursus, dui diam hendrerit augue, id tincidunt eros purus luctus felis. Aliquam suscipit porttitor quam, non ultricies libero vulputate quis. Mauris hendrerit, leo id facilisis ullamcorper, sapien leo laoreet lorem, eget viverra risus libero nec nunc. Curabitur ac turpis lobortis, rhoncus nulla et, consectetur odio. Suspendisse venenatis lectus at nulla vulputate scelerisque.
-
 		Mauris sit amet nisi ex. Vestibulum id quam eget augue pretium elementum. Phasellus ultrices enim et magna tincidunt tincidunt. Sed rhoncus massa nisi, a vehicula elit gravida lacinia. Ut rhoncus nibh augue, id sodales ligula vulputate id. Ut ex ex, fermentum eu cursus vitae, maximus at enim. Nunc et tortor non nunc mattis venenatis sit amet in quam. Suspendisse libero quam, auctor vel elit non, commodo laoreet justo. Mauris quis diam elit. Donec tincidunt, libero id venenatis consectetur, elit mauris venenatis elit, et pretium risus dui sed dui. Phasellus elit risus, cursus auctor diam et, vestibulum placerat neque. Nam sagittis convallis felis. Proin varius arcu eget libero dapibus pharetra. Praesent imperdiet lorem pellentesque leo bibendum, at interdum elit viverra. Nulla facilisi. Vivamus viverra orci eget lacus lobortis molestie.
-
 		Nullam quis volutpat risus. Quisque ultrices fermentum scelerisque. Sed placerat scelerisque arcu, sed porttitor odio suscipit sit amet. Ut molestie efficitur metus at mollis. Maecenas sed pellentesque turpis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus eleifend laoreet eros ac semper. Aenean porta dapibus nunc a varius. Mauris mollis nulla eget bibendum placerat.
-
 		Quisque auctor mattis scelerisque. Praesent suscipit interdum tortor, non aliquam ipsum consequat quis. Phasellus tincidunt vehicula lectus nec auctor. Ut et tempus nunc. Quisque scelerisque tellus arcu, quis scelerisque justo hendrerit eget. Sed tempor ac urna id scelerisque. Aenean at fermentum diam. Ut elementum dapibus lacinia. Proin maximus in justo sed pretium.
-
 		Integer vel turpis id lectus elementum vulputate. Aliquam tempor fermentum lectus, ac aliquet arcu dictum vel. Donec posuere urna sit amet accumsan pulvinar. Vivamus in ex metus. Sed ac orci ut erat cursus pharetra. Phasellus ut lobortis enim, eget sollicitudin tellus. Donec accumsan cursus dolor nec interdum. Curabitur sagittis massa sit amet ligula dapibus, in dapibus purus sodales.
-
 		Donec volutpat vel eros sed sollicitudin. Praesent ut posuere risus. Donec ornare mi purus, eu elementum erat dignissim vel. Pellentesque quis orci nec odio aliquet lacinia. Pellentesque congue sit amet mauris quis ullamcorper. Cras sit amet arcu vel ex volutpat dictum sit amet eu augue. Vivamus enim tortor, sollicitudin consectetur odio et, aliquet placerat ante. Nam vel odio sed erat porta vehicula at ac enim. Vivamus sagittis mauris sit amet massa congue, eget rhoncus augue consectetur. Etiam aliquet, justo at suscipit auctor, arcu libero consequat tortor, a fermentum urna ex id risus. Donec sit amet lorem eu est aliquam finibus.
-
 		Curabitur quis ultrices nisi, at consectetur orci. Fusce mi felis, volutpat sed dignissim in, porta sed erat. Pellentesque lacus magna, tincidunt vel tincidunt in, feugiat feugiat neque. Curabitur accumsan mi sed purus sagittis, id condimentum est aliquet. Proin vitae sapien pharetra, sollicitudin justo sed, fringilla orci. Nullam viverra nibh ut mi consequat, at scelerisque arcu iaculis. Praesent molestie massa ut dui fermentum, sit amet elementum est venenatis. Sed luctus lacinia nisl, id ornare dui pulvinar at. Fusce ut ex ornare, aliquam quam eu, auctor risus. Fusce lectus lorem, volutpat a maximus accumsan, consequat at sem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam ac malesuada felis, in interdum arcu. Donec dignissim ex in cursus condimentum. Sed at pulvinar odio, nec venenatis enim. Aliquam id ornare elit, vitae porta felis. 
 	</section>
 	<section>hi</section>
-	<section>hey</section>
+	<section><h2>hey</h2></section>
 	<script src="script.js"></script>
 </body>
 </html>
