@@ -6,9 +6,14 @@
 
 html {
     scroll-behavior: smooth;
+
+    /* footer config */
+    position: relative;
+    min-height: 100%;
 }
 
 body {
+    margin: 0 0 100px; /* space for footer */
     background-color: rgb(24, 24, 24);
     font-family: roboto;
     color: white;
@@ -18,6 +23,14 @@ header {
     text-align: center;
     background-color: rgba(0, 0, 0, .6);
     padding: 10px 0px;
+}
+
+h1 a {
+    transition: text-shadow, 0.2s;
+}
+
+h1 a:hover {
+    text-shadow: 0 0 12px white;
 }
 
 strong {
@@ -56,10 +69,10 @@ nav a:active {
 
 section {
     background-color: rgba(0, 0, 0, .6);
+    border-radius: 4px;
     max-width: 1000px;
     padding: 25px;
-    margin: auto;
-    margin-top: 10px
+    margin: 10px auto;
 }
 
 section a {
@@ -75,7 +88,16 @@ section a:active {
 
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+}
+
+/* divider */
+h2::after {
+    content: "";
+    display: block;
+    background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+    width: 100%;
+    height: 2px;
+    margin: 15px 0 20px;
 }
 
 @keyframes project-intro {
@@ -92,46 +114,76 @@ h2 {
 .project-container {
     display: inline-block;
     position: relative;
-    width: 50%;
+
+    margin: 10px;
+    width: calc(100% - 10px);
+
+    border: 2px ridge rgb(32, 32, 32);
+
     animation: project-intro 1s;
     animation-fill-mode: both;
-}
 
-.project-container div {
-    margin: 10px;
-    padding: 20px;
-    background-size: cover;
+    transition: background-size 0.5s;
+    background-size: 100%;
     background-position: center;
-    border: 2px ridge rgb(32, 32, 32);
+    background-repeat: no-repeat;
 }
 
-/* Should redo this when adding zoom transition */
+.project-content {
+    display: block;
+    padding: 30px 20px;
+    background-image: linear-gradient(to right, black, transparent);
+    text-decoration: none;
+    color: white;
+    line-height: 1.8em;
+}
+
+.project-content:active {
+    color: white;
+}
+
+.project-container:hover {
+    background-size: 125%;
+}
+
+h3 {
+    margin-bottom: 20px;
+}
+
 #nohra {
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url('images/NohraScreenshot.jpg');
+    background-image: url('images/NohraScreenshot.jpg');
 }
 
 #javelin {
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url('images/JavelinScreenshot.png');
+    background-image: url('images/JavelinScreenshot.png');
 }
 
 #keeper {
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url('images/KeeperScreenshot.png');
+    background-image: url('images/KeeperScreenshot.png');
 }
 
 #tome {
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url('images/TomeScreenshot.png');
+    background-image: url('images/TomeScreenshot.png');
 }
 
 #voxel {
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url('images/VoxelScreenshot.png');
+    background-image: url('images/VoxelScreenshot.png');
 }
 
-iframe {
-    max-width: 100%;
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 90px;
+    padding: 20px;
+    text-align: center;
+    font-size: 10pt;
+    color: rgb(96, 96, 96);
+    background-color: rgba(0, 0, 0, .6);
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (min-width: 720px) {
     .project-container {
-        width: 100%;
+        width: calc(50% - 20px);
     }
 }
