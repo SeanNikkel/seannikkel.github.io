@@ -182,6 +182,22 @@ footer {
     background-color: rgba(0, 0, 0, .6);
 }
 
+
+/* 404 */
+.centered {
+    position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.centered h1 {
+    font-size: 8em;
+	color: grey;
+	text-shadow: 6px 6px 4px black;
+}
+
 @media screen and (min-width: 720px) {
     .project-container {
         width: calc(50% - 20px);
