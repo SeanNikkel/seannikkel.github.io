@@ -14,7 +14,7 @@ html {
 
 body {
     margin: 0 0 100px; /* space for footer */
-    background: url('images/Background.png');
+    background-color: rgb(24, 24, 24);
     font-family: roboto;
     color: white;
 }
