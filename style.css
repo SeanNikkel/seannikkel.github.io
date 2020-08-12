@@ -267,7 +267,7 @@ footer, small {
 .centered h1 {
     font-size: 8em;
 	color: grey;
-	text-shadow: 6px 6px 4px black;
+	text-shadow: 6px 6px 4px rgba(0, 0, 0, .5);
 }
 
 @media screen and (min-width: 720px) {
