@@ -1,8 +1,14 @@
 // Animation delay
+
+// skip if using back/forward buttons
+let skip = window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_BACK_FORWARD;
 let games = document.getElementsByClassName("project-container");
 for (let i = 0; i < games.length; i++)
 {
-    games[i].style.animationDelay = String((i + 1) * 0.25) + "s";
+    if (!skip)
+        games[i].style.animationDelay = String(i * 0.25) + "s";
+    else
+        games[i].style.animationDelay = "-999s";
 }
 
 // Navigation
