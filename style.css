@@ -128,7 +128,7 @@ section h1::after, h2::after {
     position: relative;
 
     margin: 10px;
-    width: calc(100% - 10px);
+    width: calc(100% - 20px);
 
     border: 2px ridge rgb(32, 32, 32);
 
@@ -205,7 +205,7 @@ section h1::after, h2::after {
     display: inline-block;
     margin: 10px;
     margin-bottom: 0px;
-    max-width: calc((950px - 60px) / 3);
+    width: calc(100% - 20px);
     border: 1px solid rgb(48, 48, 48);
 }
 
@@ -282,8 +282,17 @@ footer, small {
 	text-shadow: 6px 6px 4px rgba(0, 0, 0, .5);
 }
 
+@media screen and (min-width: 480px) {
+    .screenshot {
+        width: calc(50% - 20px);
+    }
+}
+
 @media screen and (min-width: 720px) {
     .project-container {
         width: calc(50% - 20px);
+    }
+    .screenshot {
+        width: calc(33.33% - 20px);
     }
 }
