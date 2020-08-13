@@ -49,7 +49,7 @@ nav {
     position: sticky;
     top: 0;
     text-align: center;
-    background-color: rgba(16, 16, 16, 0.8);
+    background-color: rgba(16, 16, 16, 0.85);
     list-style: none;
     z-index: 10;
 }
@@ -221,8 +221,9 @@ h4 {
 }
 
 table {
-    border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 
 th, td {
@@ -235,6 +236,22 @@ tr:nth-child(odd) {
 
 td:nth-child(1) {
     font-weight: bold;
+    text-align: right;
+}
+
+.contributions {
+    text-align: center;
+    border: 1px solid rgb(48, 48, 48);
+    border-style: solid none;
+}
+
+ul {
+    display: inline-block;
+    margin: 10px;
+    padding-left: 20px; /* bullets */
+    text-align: left;
+    line-height: 2em;
+    font-size: 1.1em;
 }
 
 p {
