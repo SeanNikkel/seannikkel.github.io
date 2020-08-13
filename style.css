@@ -159,27 +159,27 @@ section h1::after, h2::after {
 }
 
 #nohra {
-    background-image: url('images/NohraScreenshot.jpg');
+    background-image: url('images/NohraSplash.jpg');
 }
 
 #javelin {
-    background-image: url('images/JavelinScreenshot.png');
+    background-image: url('images/JavelinSplash.png');
 }
 
 #keeper {
-    background-image: url('images/KeeperScreenshot.png');
+    background-image: url('images/KeeperSplash.png');
 }
 
 #tome {
-    background-image: url('images/TomeScreenshot.png');
+    background-image: url('images/TomeSplash.png');
 }
 
 #voxel {
-    background-image: url('images/VoxelScreenshot.png');
+    background-image: url('images/VoxelSplash.png');
 }
 
 #breakthrough {
-    background-image: url('images/BreakthroughScreenshot.png');
+    background-image: url('images/BreakthroughSplash.png');
 }
 
 .maintain-ratio {
@@ -195,6 +195,18 @@ section h1::after, h2::after {
     height: 100%;
     left: 0;
     top: 0;
+}
+
+.screenshot-container {
+    text-align: center;
+}
+
+.screenshot {
+    display: inline-block;
+    margin: 10px;
+    margin-bottom: 0px;
+    max-width: calc((950px - 60px) / 3);
+    border: 1px solid rgb(48, 48, 48);
 }
 
 h3 {
