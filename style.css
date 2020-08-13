@@ -206,6 +206,7 @@ section h1::after, h2::after {
     margin: 10px;
     margin-bottom: 0px;
     width: calc(100% - 20px);
+    height: auto;
     border: 1px solid rgb(48, 48, 48);
 }
 
