@@ -163,23 +163,23 @@ section h1::after, h2::after {
 }
 
 #javelin {
-    background-image: url('images/JavelinSplash.png');
+    background-image: url('images/JavelinSplash.jpg');
 }
 
 #keeper {
-    background-image: url('images/KeeperSplash.png');
+    background-image: url('images/KeeperSplash.jpg');
 }
 
 #tome {
-    background-image: url('images/TomeSplash.png');
+    background-image: url('images/TomeSplash.jpg');
 }
 
 #voxel {
-    background-image: url('images/VoxelSplash.png');
+    background-image: url('images/VoxelSplash.jpg');
 }
 
 #breakthrough {
-    background-image: url('images/BreakthroughSplash.png');
+    background-image: url('images/BreakthroughSplash.jpg');
 }
 
 .maintain-ratio {
