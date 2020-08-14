@@ -300,6 +300,10 @@ footer, small {
 	text-shadow: 6px 6px 4px rgba(0, 0, 0, .5);
 }
 
+.pad-below {
+    padding-bottom: 25px;
+}
+
 @media screen and (min-width: 480px) {
     .screenshot {
         width: calc(50% - 20px);
