@@ -29,7 +29,7 @@ a:active {
 
 header {
     text-align: center;
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgb(8, 8, 8);
     padding: 10px 0px;
 }
 
@@ -76,7 +76,7 @@ nav a:active {
 }
 
 section {
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgba(8, 8, 8, 0.9);
     border-radius: 4px;
     max-width: 1000px;
     padding: 25px;
@@ -276,7 +276,7 @@ footer {
     height: 90px;
     padding: 20px;
     text-align: center;
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgb(8, 8, 8);
 }
 
 footer, small {
