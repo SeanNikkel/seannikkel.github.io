@@ -1,3 +1,4 @@
+"use strict"
 // Animation delay
 
 // skip if using back/forward buttons
@@ -23,9 +24,28 @@ function jumpTo(elementId)
 
 // Stars background
 
-// create container element
-let starContainer = document.createElement("div");
-document.body.appendChild(starContainer);
+// vars
+const starMoveMin = 0.005;
+const starMoveMax = 0.05;
+const starSizeMin = 2;
+const starSizeMax = 6;
+const starDensity = 0.001;
+const maxStarsEver = 10000;
+const furtherStarBias = 8;
+const resizeWaitTime = 50;
+const starColor = "#303030";
+const backgroundColor = "#181818";
+
+// create canvas
+let canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
+canvas.style.position = "fixed";
+canvas.style.left = 0;
+canvas.style.top = 0;
+canvas.style.zIndex = -100;
+
+var context = canvas.getContext("2d");
+
 
 // functions
 function lerp(start, end, t) {
@@ -38,57 +58,45 @@ function Star(x, y, depth) {
     this.x = x;
     this.y = y;
     this.depth = depth;
-    this.moveFactor = lerp(0.005, 0.05, this.depth);
+    this.moveFactor = lerp(starMoveMin, starMoveMax, this.depth);
+    this.size = lerp(starSizeMin, starSizeMax, this.depth);
 
     // Member functions
     this.move = function(x, y) {
         this.x += x * this.moveFactor;
         this.y += y * this.moveFactor;
 
-        if (this.x < -3)
-            this.x += window.innerWidth + 6;
-
-        this.element.style.left = String(this.x) + "px";
-        this.element.style.top = String(this.y) + "px";
+        // off screen, wrap around
+        if (this.x < -this.size / 2)
+            this.x += canvas.width + this.size;
     }
-    this.destroy = function() {
-        this.element.remove();
+    this.draw = function(ctx) {
+        ctx.fillRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
     }
-
-    // Element init
-    this.element = document.createElement("div");
-    this.element.style.position = "fixed";
-    this.element.style.left = String(this.x) + "px";
-    this.element.style.top = String(this.y) + "px";
-    this.element.style.width = String(lerp(2, 6, this.depth)) + "px";
-    this.element.style.height = this.element.style.width;
-    this.element.style.backgroundColor = "rgb(48,48,48)";
-    this.element.style.zIndex = -100;
-    starContainer.appendChild(this.element);
 }
 
 // init
 let stars = [];
 function init() {
-    // clear current stars
-    for (let i = 0; i < stars.length; i++)
-    {
-        stars[i].destroy();
-    }
+    // update canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    let starCount = Math.min((window.innerWidth * window.innerHeight) / 8000, 500);
+    stars = []; // reset if called again
+
+    let starCount = Math.min(canvas.width * canvas.height * starDensity, maxStarsEver);
     for (let i = 0; i < starCount; i++)
     {
-        stars.push(new Star(Math.random() * window.innerWidth, Math.random() * window.innerHeight, Math.random() ** 3));
+        stars.push(new Star(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() ** furtherStarBias));
     }
 }
 init();
 
 // call init again after resize has stopped for 50ms
 let waitFunction;
-window.addEventListener("resize", function() { 
+window.addEventListener("resize", function() {
     clearTimeout(waitFunction); 
-    waitFunction = setTimeout(init, 50); 
+    waitFunction = setTimeout(init, resizeWaitTime); 
 }); 
 
 // update loop
@@ -103,10 +111,17 @@ function updateStars(time)
     let dt = time - lastTime;
     lastTime = time;
 
+    // Clear
+    context.fillStyle = backgroundColor;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    context.fillStyle = starColor;
+
     // Move all stars left
     for (let i = 0; i < stars.length; i++)
     {
         stars[i].move(-dt, 0);
+        stars[i].draw(context);
     }
 
     window.requestAnimationFrame(updateStars);
