@@ -69,6 +69,7 @@ nav a:hover {
     background-color: rgba(64, 64, 64, 0.8);
 }
 
+
 nav a:active {
     transition: 0s;
     background-color: white;
@@ -110,6 +111,24 @@ section h1::after, h2::after {
     width: 100%;
     height: 2px;
     margin: 10px 0 20px;
+}
+
+.profile {
+    margin: 10px 20px;
+    border: 2px ridge rgb(32, 32, 32);
+    border-radius: 10px;
+    float: left;
+}
+
+p {
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 @keyframes project-intro {
@@ -252,10 +271,6 @@ ul {
     text-align: left;
     line-height: 2em;
     font-size: 1.1em;
-}
-
-p {
-    text-indent: 40px;
 }
 
 .center {
