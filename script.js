@@ -3,7 +3,7 @@
 
 // skip if using back/forward buttons
 let skip = window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_BACK_FORWARD;
-let games = document.getElementsByClassName("project-container");
+let games = document.getElementsByClassName("intro-sequence");
 for (let i = 0; i < games.length; i++)
 {
     if (!skip)
@@ -68,7 +68,10 @@ function Star(x, y, depth) {
 
         // off screen, wrap around
         if (this.x < -this.size / 2)
+        {
             this.x += canvas.width + this.size;
+            this.y = Math.random() * canvas.height;
+        }
     }
     this.draw = function(ctx) {
         ctx.fillRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
@@ -82,7 +85,7 @@ function init() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    stars = []; // reset if called again
+    stars = []; // reset if called twice
 
     let starCount = Math.min(canvas.width * canvas.height * starDensity, maxStarsEver);
     for (let i = 0; i < starCount; i++)

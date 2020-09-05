@@ -114,10 +114,22 @@ section h1::after, h2::after {
 }
 
 .profile {
-    margin: 10px 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     border: 2px ridge rgb(32, 32, 32);
     border-radius: 10px;
-    float: left;
+    
+    animation: profile-intro 1s;
+    animation-fill-mode: both;
+}
+
+@media screen and (min-width: 600px) {
+    .profile {
+        margin: 10px 20px;
+        float: left;
+    }
+
 }
 
 p {
@@ -129,6 +141,15 @@ p {
     content: "";
     clear: both;
     display: table;
+}
+
+@keyframes profile-intro {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes project-intro {
@@ -158,6 +179,12 @@ p {
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 720px) {
+    .project-container {
+        width: calc(50% - 20px);
+    }
 }
 
 .project-content {
@@ -228,6 +255,19 @@ p {
     height: auto;
     border: 1px solid rgb(48, 48, 48);
 }
+
+@media screen and (min-width: 480px) {
+    .screenshot {
+        width: calc(50% - 20px);
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .screenshot {
+        width: calc(33.33% - 20px);
+    }
+}
+
 
 h3 {
     margin: 40px 0 20px;
@@ -317,19 +357,4 @@ footer, small {
 
 .pad-below {
     padding-bottom: 25px;
-}
-
-@media screen and (min-width: 480px) {
-    .screenshot {
-        width: calc(50% - 20px);
-    }
-}
-
-@media screen and (min-width: 720px) {
-    .project-container {
-        width: calc(50% - 20px);
-    }
-    .screenshot {
-        width: calc(33.33% - 20px);
-    }
 }
