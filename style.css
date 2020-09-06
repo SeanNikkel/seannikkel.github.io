@@ -132,7 +132,7 @@ section h1::after, h2::after {
 
 }
 
-p {
+#about p {
     padding: 20px;
     line-height: 1.5;
 }
