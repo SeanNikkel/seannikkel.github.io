@@ -17,8 +17,7 @@ function jumpTo(elementId)
 {
     var elementTop = document.getElementById(elementId).offsetTop;
     var navHeight = document.getElementById("nav").scrollHeight;
-    var marginSize = 10;
-    window.scrollTo(0, elementTop - navHeight - marginSize);
+    window.scrollTo(0, elementTop - navHeight);
     return false;
 }
 
@@ -40,6 +39,7 @@ const forceAmount = 0.5;
 const forceRange = 150;
 const minForceScalar = 0.1;
 const maxForceScalar = 1.0;
+const scrollMoveAmount = -5;
 
 // create canvas
 let canvas = document.createElement("canvas");
@@ -101,32 +101,40 @@ function Star(x, y, depth) {
         this.velocity.x += vector.x * forceFactor;
         this.velocity.y += vector.y * forceFactor;
     }
+    this.offset = function(x, y) {
+
+        this.position.x += x;
+        this.position.y += y;
+
+        // wrap around screen
+        if (x < 0 && this.position.x < -this.size / 2)
+            this.position.x += canvas.width + this.size;
+        if (x > 0 && this.position.x > canvas.width + this.size / 2)
+            this.position.x -= canvas.width + this.size;
+        if (y < 0 && this.position.y < -this.size / 2)
+            this.position.y += canvas.height + this.size;
+        if (y > 0 && this.position.y > canvas.height + this.size / 2)
+            this.position.y -= canvas.height + this.size;
+    }
     this.move = function(dt) {
+        
+        let deltaX = 0;
+        let deltaY = 0;
 
         // scrolling
-        this.position.x -= this.moveFactor * dt;
+        deltaX -= this.moveFactor * dt;
 
         // performance check
         if (this.velocity.x != 0 || this.velocity.y != 0) {
             // apply velocity
-            this.position.x += this.velocity.x * dt;
-            this.position.y += this.velocity.y * dt;
+            deltaX += this.velocity.x * dt;
+            deltaY += this.velocity.y * dt;
 
             // apply drag
             applyDrag(this.velocity, dragAmount, dt);
-
-            // off top or bottom of screen, wrap around
-            if (this.position.y < -this.size / 2)
-                this.position.y += canvas.height + this.size;
-            if (this.position.y > canvas.height + this.size / 2)
-                this.position.y -= canvas.height + this.size;
         }
 
-        // off left of screen, wrap around
-        if (this.position.x < -this.size / 2) {
-            this.position.x += canvas.width + this.size;
-            this.position.y = Math.random() * canvas.height;
-        }
+        this.offset(deltaX, deltaY);
     }
     this.draw = function(ctx) {
         ctx.fillRect(this.position.x - this.size / 2, this.position.y - this.size / 2, this.size, this.size);
@@ -154,7 +162,15 @@ let waitFunction;
 window.addEventListener("resize", function() {
     clearTimeout(waitFunction); 
     waitFunction = setTimeout(init, resizeWaitTime); 
-}); 
+});
+
+// scroll parallax
+let lastScroll = 0;
+let currentDeltaScroll = 0;
+window.addEventListener("scroll", function() {
+    currentDeltaScroll += window.scrollY - lastScroll;
+    lastScroll = window.scrollY;
+});
 
 // click explosion
 document.body.addEventListener("click", function(e) {
@@ -196,9 +212,11 @@ function updateStars(time)
 
     // Move all stars left
     for (let i = 0; i < stars.length; i++) {
+        stars[i].offset(0, currentDeltaScroll * stars[i].moveFactor * scrollMoveAmount);
         stars[i].move(dt);
         stars[i].draw(context);
     }
+    currentDeltaScroll = 0;
 
     window.requestAnimationFrame(updateStars);
 };
