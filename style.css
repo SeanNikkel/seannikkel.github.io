@@ -33,6 +33,10 @@ header {
     padding: 10px 0px;
 }
 
+header h1 {
+    font-size: 2.5em;
+}
+
 h1 a {
     transition: text-shadow, 0.2s;
 }
@@ -204,30 +208,6 @@ section h1::after, h2::after {
     background-size: 125%;
 }
 
-#nohra {
-    background-image: url('images/NohraSplash.jpg');
-}
-
-#javelin {
-    background-image: url('images/JavelinSplash.jpg');
-}
-
-#keeper {
-    background-image: url('images/KeeperSplash.jpg');
-}
-
-#tome {
-    background-image: url('images/TomeSplash.jpg');
-}
-
-#voxel {
-    background-image: url('images/VoxelSplash.jpg');
-}
-
-#breakthrough {
-    background-image: url('images/BreakthroughSplash.jpg');
-}
-
 .maintain-ratio {
     position: relative;
     width: 100%;
@@ -267,7 +247,6 @@ section h1::after, h2::after {
         width: calc(33.33% - 20px);
     }
 }
-
 
 h3 {
     margin: 40px 0 20px;
