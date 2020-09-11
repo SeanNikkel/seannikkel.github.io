@@ -17,8 +17,22 @@
 	<nav id="nav" ondragstart="return false;" ondrop="return false;">
 		<a href="#home" onclick="return jumpTo('home');">Home</a><!-- avoid whitespace
 	 --><a href="#about" onclick="return jumpTo('about');">About</a><!-- avoid whitespace
-	 --><a href="#academic" onclick="return jumpTo('academic');">Academic Projects</a><!-- avoid whitespace
-	 --><a href="#personal" onclick="return jumpTo('personal');">Personal Projects</a>
+	 --><div class="dropdown">
+            <a href="#academic" onclick="return jumpTo('academic');">Academic Projects</a>
+            <div class="dropdown-content">
+                <a href="Nohra">Nohra</a>
+                <a href="Javelin">Javelin</a>
+                <a href="Keeper_of_the_Realms">Keeper of the Realms</a>
+            </div>
+        </div><!-- avoid whitespace
+	 --><div class="dropdown">
+            <a href="#personal" onclick="return jumpTo('personal');">Personal Projects</a>
+            <div class="dropdown-content">
+                <a href="Tome">Tome</a>
+                <a href="Voxel_Engine">Voxel Engine</a>
+                <a href="Breakthrough">Breakthrough</a>
+            </div>
+        </div>
 	</nav>
 	<section id="about" class="clearfix">
 		<h2>About</h2>
@@ -31,8 +45,8 @@
             passionate about making games, and collaborating with others to solve problems and come up with new ideas.
             I also very much enjoy the process of designing code to bring those ideas to reality!<br><br>
             If you have any questions or offers, or would just like to say hello, send me an email at
-            <a href="mailto:contact@seannikkel.com">contact@seannikkel.com</a>. You can also download my resume
-            <a href="SeanNikkelResume.docx" download>here</a>.
+            <a href="mailto:contact@seannikkel.com">contact@seannikkel.com</a>. You can also view my resume
+            <a href="SeanNikkelResume.pdf" download>here</a>.
         </p>
     </section>
 	<section id="academic">
