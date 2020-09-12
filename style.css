@@ -96,12 +96,28 @@ nav a:active {
     position: relative;
 }
 
+.dropdown>a {
+    padding-right: 35px;
+}
+
+.dropdown>a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    border-top: 5px solid white;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
     width: 100%;
     background-color: rgba(16, 16, 16, 0.85);
     transform-origin: top center;
+    z-index: 1;
     animation: dropdown-open 0.4s;
 }
 
@@ -328,6 +344,11 @@ ul {
 .center {
     text-align: center;
     text-indent: 0;
+}
+
+iframe {
+    width: 100%;
+    border: none;
 }
 
 .google-play {
