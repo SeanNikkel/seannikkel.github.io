@@ -16,7 +16,7 @@ for (let i = 0; i < games.length; i++)
 function jumpTo(elementId)
 {
     var elementTop = document.getElementById(elementId).offsetTop;
-    var navHeight = document.getElementById("nav").scrollHeight;
+    var navHeight = document.getElementById("nav").firstElementChild.scrollHeight;
     window.scrollTo(0, elementTop - navHeight);
     return false;
 }
