@@ -152,8 +152,8 @@ h1, h2, h3 {
     text-align: center;
 }
 
-section h1 {
-    font-size: 2em;
+h2 {
+    font-size: 1.75em;
 }
 
 /* divider */
@@ -176,9 +176,10 @@ section h1::after, h2::after {
 }
 
 .profile {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
+}
+
+.profile-image {
     border: 2px ridge rgb(32, 32, 32);
     border-radius: 10px;
     
@@ -186,17 +187,37 @@ section h1::after, h2::after {
     animation-fill-mode: both;
 }
 
-@media screen and (min-width: 600px) {
-    .profile {
-        margin: 10px 20px;
-        float: left;
-    }
+.social-links {
+    animation: profile-intro 2s;
+    animation-fill-mode: both;
+}
 
+.social-icon {
+    display: inline-block;
+    margin: 4px 8px 0px;
+
+    transition: opacity 0.1s;
+}
+
+.social-icon img {
+    box-sizing: content-box;
+    padding: 8px;
+}
+
+.social-icon:hover {
+    opacity: 0.5;
 }
 
 #about p {
     padding: 20px;
     line-height: 1.5;
+}
+
+@media screen and (min-width: 600px) {
+    .profile {
+        margin: 10px 20px;
+        float: left;
+    }
 }
 
 .clearfix::after {
