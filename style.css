@@ -35,6 +35,7 @@ header {
 
 header h1 {
     font-size: 2.5em;
+    text-shadow: 0 0 6px grey;
 }
 
 h1 a {
@@ -43,6 +44,10 @@ h1 a {
 
 h1 a:hover {
     text-shadow: 0 0 12px white;
+}
+
+h1 a:active {
+    color: #202020;
 }
 
 strong {
