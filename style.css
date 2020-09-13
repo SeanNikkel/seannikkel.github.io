@@ -215,7 +215,7 @@ section h1::after, h2::after {
 
 @media screen and (min-width: 600px) {
     .profile {
-        margin: 10px 20px;
+        margin: 10px 20px 0px;
         float: left;
     }
 }
