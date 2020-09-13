@@ -386,11 +386,24 @@ footer {
     padding: 20px;
     text-align: center;
     background-color: rgb(8, 8, 8);
-}
 
-footer, small {
     font-size: 10pt;
     color: rgb(96, 96, 96);
+}
+
+.explosion-hint {
+    display: none;
+    position: absolute;
+    bottom: 12px;
+    left: 15px;
+    font-size: 8pt;
+    color: rgb(32, 32, 32);
+}
+
+@media screen and (min-width: 1000px) {
+    .explosion-hint {
+        display: block;
+    }
 }
 
 
