@@ -86,11 +86,15 @@ nav a:active {
 }
 
 @keyframes dropdown-open {
-    from {
+    0% {
+        visibility: hidden;
+    }
+    25% {
         opacity: 0;
+        visibility: hidden; 
         transform: scaleY(0.8);
     }
-    to {
+    100% {
         opacity: 1;
         transform: scaleY(1);
     }
@@ -123,7 +127,7 @@ nav a:active {
     background-color: rgba(16, 16, 16, 0.85);
     transform-origin: top center;
     z-index: 1;
-    animation: dropdown-open 0.4s;
+    animation: dropdown-open 0.6s;
 }
 
 .dropdown-content a {
@@ -132,6 +136,10 @@ nav a:active {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.dropdown a:active + .dropdown-content {
+    display: none;
 }
 
 section {
