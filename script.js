@@ -35,7 +35,7 @@ const resizeWaitTime = 50;
 const starColor = "#303030";
 const backgroundColor = "#181818";
 const dragAmount = 1.002;
-const forceDrawAmount = 0.002;
+const forceDrawAmount = 0.02;
 const forceDrawRange = 120;
 const forceRelAmount = 0.5;
 const forceRelRange = 200;
@@ -225,7 +225,7 @@ function updateStars(time)
 
     // draw explosion
     if (mouseDown && clickedInBounds)
-        explosion(mousePosX, mousePosY, forceDrawAmount * dt, forceDrawRange, minDepthDrawForceScalar)
+        explosion(mousePosX, mousePosY, forceDrawAmount, forceDrawRange, minDepthDrawForceScalar)
 
     // release explosion
     if (clickedInBounds && !mouseDown)
