@@ -35,10 +35,12 @@ const resizeWaitTime = 50;
 const starColor = "#303030";
 const backgroundColor = "#181818";
 const dragAmount = 1.002;
-const forceAmount = 0.5;
-const forceRange = 150;
-const minForceScalar = 0.1;
-const maxForceScalar = 1.0;
+const forceDrawAmount = 0.002;
+const forceDrawRange = 120;
+const forceRelAmount = 0.5;
+const forceRelRange = 200;
+const minDepthDrawForceScalar = 0.45;
+const minDepthRelForceScalar = 0.2;
 const scrollMoveAmount = -5;
 
 // create canvas
@@ -48,7 +50,7 @@ document.body.appendChild(canvas);
 canvas.style.position = "fixed";
 canvas.style.left = 0;
 canvas.style.top = 0;
-canvas.style.zIndex = -100;
+canvas.style.zIndex = -10;
 
 // functions
 function lerp(start, end, t) {
@@ -96,13 +98,12 @@ function Star(x, y, depth) {
     this.velocity = new Vector(0, 0);
 
     // Member functions
-    this.addForce = function(vector) {
-        let forceFactor = lerp(minForceScalar, maxForceScalar, this.depth);
+    this.addForce = function(vector, minForce = minDepthRelForceScalar) {
+        let forceFactor = lerp(minForce, 1.0, this.depth);
         this.velocity.x += vector.x * forceFactor;
         this.velocity.y += vector.y * forceFactor;
     }
     this.offset = function(x, y) {
-
         this.position.x += x;
         this.position.y += y;
 
@@ -117,7 +118,6 @@ function Star(x, y, depth) {
             this.position.y -= canvas.height + this.size;
     }
     this.move = function(dt) {
-        
         let deltaX = 0;
         let deltaY = 0;
 
@@ -172,45 +172,75 @@ window.addEventListener("scroll", function() {
     lastScroll = window.scrollY;
 });
 
-// click explosion
-document.body.addEventListener("click", function(e) {
-    let rect = canvas.getBoundingClientRect();
-    let x = e.clientX - rect.left;
-    let y = e.clientY - rect.top;
+// save variables to keep track of state of mouse
+var mouseDown = false;
+var clickedInBounds = false;
+var mousePosX = 0;
+var mousePosY = 0;
+function updateMouseVars(e) {
+    mouseDown = e.buttons === undefined ? e.which === 1 : e.buttons === 1;
 
+    let rect = canvas.getBoundingClientRect();
+    mousePosX = e.clientX - rect.left;
+    mousePosY = e.clientY - rect.top;
+}
+document.body.onmousedown = updateMouseVars;
+document.body.onmousemove = updateMouseVars;
+document.body.onmouseup = updateMouseVars;
+
+// begin draw explosions when clicking canvas only
+canvas.onmousedown = function(e) {
+    clickedInBounds = true;
+    return false;
+};
+
+// create star explosion
+function explosion(posX, posY, force, range, minForce = minDepthRelForceScalar)
+{
     for (let i = 0; i < stars.length; i++) {
-        let coord = new Vector(x, y);
+        let coord = new Vector(posX, posY);
         coord.subtract(stars[i].position);
 
         let len = coord.length();
         coord.scale(-1 / len);
 
-        len = Math.max(((forceRange - len) / forceRange) * forceAmount, 0);
+        len = Math.max(((range - len) / range) * force, 0);
         coord.scale(len);
 
-        stars[i].addForce(coord);
+        stars[i].addForce(coord, minForce);
     }
-});
+}
 
 // update loop
 window.requestAnimationFrame(updateStars);
 let lastTime;
 function updateStars(time)
 {
-    // Get delta time
+    // get delta time
     if (lastTime === undefined)
         lastTime = time;
     
     let dt = time - lastTime;
     lastTime = time;
 
-    // Clear
+    // draw explosion
+    if (mouseDown && clickedInBounds)
+        explosion(mousePosX, mousePosY, forceDrawAmount * dt, forceDrawRange, minDepthDrawForceScalar)
+
+    // release explosion
+    if (clickedInBounds && !mouseDown)
+    {
+        clickedInBounds = false;
+        explosion(mousePosX, mousePosY, forceRelAmount, forceRelRange, minDepthRelForceScalar)
+    }
+
+    // clear
     context.fillStyle = backgroundColor;
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     context.fillStyle = starColor;
 
-    // Move all stars left
+    // move all stars left
     for (let i = 0; i < stars.length; i++) {
         stars[i].offset(0, currentDeltaScroll * stars[i].moveFactor * scrollMoveAmount);
         stars[i].move(dt);
