@@ -211,42 +211,51 @@ function explosion(posX, posY, force, range, minForce = minDepthRelForceScalar)
     }
 }
 
+// update if actively viewing
+let tabActive = true;
+document.addEventListener("visibilitychange", function() {
+    tabActive = document.visibilityState === 'visible';
+});
+
 // update loop
 window.requestAnimationFrame(updateStars);
 let lastTime;
 function updateStars(time)
 {
-    // get delta time
-    if (lastTime === undefined)
-        lastTime = time;
-    
-    let dt = time - lastTime;
-    lastTime = time;
-
-    // draw explosion
-    if (mouseDown && clickedInBounds)
-        explosion(mousePosX, mousePosY, forceDrawAmount, forceDrawRange, minDepthDrawForceScalar)
-
-    // release explosion
-    if (clickedInBounds && !mouseDown)
+    // only draw if being looked at
+    if (tabActive)
     {
-        clickedInBounds = false;
-        explosion(mousePosX, mousePosY, forceRelAmount, forceRelRange, minDepthRelForceScalar)
+        // get delta time
+        if (lastTime === undefined)
+            lastTime = time;
+        
+        let dt = time - lastTime;
+        lastTime = time;
+
+        // draw explosion
+        if (mouseDown && clickedInBounds)
+            explosion(mousePosX, mousePosY, forceDrawAmount, forceDrawRange, minDepthDrawForceScalar)
+
+        // release explosion
+        if (clickedInBounds && !mouseDown)
+        {
+            clickedInBounds = false;
+            explosion(mousePosX, mousePosY, forceRelAmount, forceRelRange, minDepthRelForceScalar)
+        }
+
+        // clear
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        context.fillStyle = starColor;
+
+        // move all stars left
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].offset(0, currentDeltaScroll * stars[i].moveFactor * scrollMoveAmount);
+            stars[i].move(dt);
+            stars[i].draw(context);
+        }
+        currentDeltaScroll = 0;
     }
-
-    // clear
-    context.fillStyle = backgroundColor;
-    context.fillRect(0, 0, canvas.width, canvas.height);
-
-    context.fillStyle = starColor;
-
-    // move all stars left
-    for (let i = 0; i < stars.length; i++) {
-        stars[i].offset(0, currentDeltaScroll * stars[i].moveFactor * scrollMoveAmount);
-        stars[i].move(dt);
-        stars[i].draw(context);
-    }
-    currentDeltaScroll = 0;
-
     window.requestAnimationFrame(updateStars);
 };

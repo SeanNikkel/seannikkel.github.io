@@ -164,6 +164,7 @@ nav a:active {
 }
 
 section {
+    position: relative;
     background-color: rgba(8, 8, 8, 0.9);
     border-radius: 4px;
     max-width: 1000px;
@@ -425,10 +426,10 @@ footer {
 .explosion-hint {
     display: none;
     position: absolute;
-    bottom: 12px;
-    left: 15px;
+    bottom: 14px;
+    right: 16px;
     font-size: 8pt;
-    color: rgb(32, 32, 32);
+    color: rgb(48, 48, 48);
 }
 
 @media screen and (min-width: 1000px) {
