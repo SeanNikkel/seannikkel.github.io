@@ -426,7 +426,7 @@ footer {
     bottom: 14px;
     right: 16px;
     font-size: 8pt;
-    color: rgb(48, 48, 48);
+    color: rgb(64, 64, 64);
 }
 
 @media screen and (min-width: 1000px) {
