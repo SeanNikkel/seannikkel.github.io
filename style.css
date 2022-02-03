@@ -201,6 +201,7 @@ section h1::after, h2::after, h3::after {
 /* divider */
 h3::after {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25), transparent);
+    height: 1.5px;
 }
 
 @keyframes profile-intro {
