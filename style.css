@@ -304,7 +304,7 @@ h3::after {
     padding: 30px 20px;
     background-image: linear-gradient(to right, black, transparent);
     text-decoration: none;
-    color: white;
+    color: #E3E3E3;
     line-height: 1.8em;
 }
 
@@ -370,6 +370,7 @@ h4 {
 h5 {
     font-size: 1.2em;
     margin-bottom: 20px;
+    color: white;
 }
 
 table {
