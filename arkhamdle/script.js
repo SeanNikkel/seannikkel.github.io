@@ -121,7 +121,7 @@ async function getConfig() {
 	const response = await fetch('config.json');
 	baseConfigText = await response.text();
 
-	//storedConfigText = localStorage.getItem(configCachekey);
+	storedConfigText = localStorage.getItem(configCachekey);
 	
 	if (!storedConfigText) {
 		localStorage.setItem(configCachekey, baseConfigText);
