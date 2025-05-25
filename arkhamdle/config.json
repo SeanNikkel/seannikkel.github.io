@@ -7,7 +7,7 @@
             "weight": 15,
             "exclude": {
                 "type_name": [ "Act", "Location", "Story", "Agenda", "Scenario" ],
-                "code": [ "90001", "90008" ]
+                "code": [ "03241b", "06349", "06350", "90001", "90008" ]
             }
         },
         {
@@ -32,7 +32,10 @@
             "question": "What type of card is this?",
             "questionField": "name",
             "answerField": "type_name",
-            "weight": 3
+            "weight": 3,
+            "exclude": {
+                "code": [ "03241b" ]
+            }
         },
         {
             "question": "What is the resource cost of this card?",
