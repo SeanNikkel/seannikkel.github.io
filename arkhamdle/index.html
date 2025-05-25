@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<title>Arkhamdle</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Sean Nikkel">
+	<meta name="description" content="Arkham Horror The Card Game guessing game.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Julius+Sans+One&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<img src="arkhamdle.png">
+	    <div class="content">
+			<div class="question-display">
+				<p id="question-text"></p>
+			</div>
+			<div id="figure"></div>
+			<form class="answer-area" id="myForm">
+				<input list="cards" id="user-answer" autocomplete="off" placeholder="Your guess...">
+				<datalist id="cards"></datalist>
+				<button id="submit-answer" disabled="true" type="submit">Guess</button>
+			</form>
+			<p class="result"><a id="result-link" target="_blank"></a></p>
+	    </div>
+	</div>
+    <button id="open-editor">Open Editor</button>
+	<div class="high-score-container">
+		<p>High score: <span id="highscore"></span></p>
+	</div>
+	<div class="score-container">
+		<p>Score: <span id="score">0</span></p>
+	</div>
+    <div id="editor-container">
+        <button id="reset-editor">Reset</button>
+        <button id="save-editor">Save & Reload</button>
+        <textarea id="editor"></textarea>
+    </div>
+	<script type="module" src="script.js"></script>
+</body>
+</html>

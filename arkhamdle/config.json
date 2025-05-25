@@ -1,0 +1,59 @@
+{
+    "questions": [
+        {
+            "question": "What is the name of the card with this illustration?",
+            "questionField": "imagesrc",
+            "answerField": "name",
+            "weight": 10,
+            "exclude": {
+                "type_name": [ "Investigator", "Treachery", "Enemy", "Act", "Location", "Story", "Agenda", "Scenario" ],
+                "code": [ "90001", "90008" ]
+            },
+            "include": {
+            }
+        },
+        {
+            "question": "What is the name of the card with this description?",
+            "questionField": "real_text",
+            "answerField": "name",
+            "weight": 10
+        },
+        {
+            "question": "What is the name of the card with this flavor text?",
+            "questionField": "flavor",
+            "answerField": "name",
+            "weight": 7
+        },
+        {
+            "question": "What type of card is this?",
+            "questionField": "name",
+            "answerField": "type_name",
+            "weight": 4
+        },
+        {
+            "question": "What pack is this card from?",
+            "questionField": "imagesrc",
+            "answerField": "pack_name",
+            "weight": 5
+        }
+    ],
+    "global_exclude": {
+    },
+    "global_include": {
+    },
+    "includeEncounterCards": 1,
+    "backgrounds": [
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Galata_Pixoloid_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Banco-de-la-Provincia_Pixoloid_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Westminster-Abbey_Pixoloid_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Tower-of-London_Pixoloid_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_The-Tower-Bridge_Pixoloid_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Gran-Teatro-de-La-Habana_PixoloidStudios_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Cabildo-Avenida-de-Mayo_Pixoloid_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Coterie-Halls_PixoloidStudios_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Coterie-Library_PixoloidStudios_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Congress-Chamber_PixoloidStudios_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Casa-Rosada_Pixoloid_Final.jpg",
+        "https://pixoloid.net/wp-content/uploads/2022/10/AHC-K1230-D4794_33030_MiskatonicUniversitypres_PixoloidStudiosLtd.jpg"
+    ]
+}
