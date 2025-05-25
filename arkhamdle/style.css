@@ -15,7 +15,7 @@ body::before {
     background-image: var(--background-image-url);
     background-size: cover;
     background-position: center;
-    filter: blur(5px) brightness(var(--background-brightness));
+    filter: blur(5px) brightness(calc(0.3 * var(--global-fade)));
     z-index: -1;
 }
 
@@ -50,6 +50,7 @@ body::before {
     left: 50%;
     transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
     transform: translateX(-50%) translateY(-50%);
+    opacity: calc(3.0 * var(--global-fade));
 }
 
 .score-container {
@@ -101,6 +102,12 @@ body::before {
     font-size: 1.1em;
     line-height: 1.25em;
     text-align: left;
+    padding: 6px;
+}
+
+.apply-border {
+	border: 1px solid #4a4a4a;
+    border-radius: 8px;
 }
 
 #figure p {

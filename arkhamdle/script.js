@@ -107,6 +107,21 @@ function randomElement(array) {
 	return array[randomIndex(array)];
 }
 
+function arrayFrom(value) {
+	if (Array.isArray(value))
+		return value;
+
+	return [ value ];
+}
+
+function arraysEqual(a, b) {
+  if (!Array.isArray(a) || !Array.isArray(b)) return false;
+  if (a.length !== b.length) return false;
+  return a.every((val, index) => val === b[index]);
+}
+
+
+
 const openEditorElement = document.getElementById('open-editor');
 
 const configCachekey = "arkhamdle_config";
@@ -179,8 +194,6 @@ const cardsDb = await getCardsDb();
 
 function fadeBackgroundIn() {
     const duration = 3.0;
-	const maxBrightness = 0.3;
-	const curve = 0.5;
 	
     let brightness = 0;
     let startTime = null;
@@ -190,11 +203,11 @@ function fadeBackgroundIn() {
 			startTime = currentTime;
 		}
 		
-        brightness = Math.pow(Math.min(1.0, (currentTime - startTime) / (duration * 1000)), curve) * maxBrightness;
+        brightness = Math.min(1.0, (currentTime - startTime) / (duration * 1000));
 		
-        document.documentElement.style.setProperty('--background-brightness', brightness);
+        document.documentElement.style.setProperty('--global-fade', brightness);
 
-        if (brightness < maxBrightness) {
+        if (brightness < 1.0) {
             requestAnimationFrame(animate);
         }
     }
@@ -259,13 +272,8 @@ function incrementScore() {
 
 function cardMatches(card, query) {
 	for (const field in query) {
-		if (Array.isArray(query[field])) {
-			if (query[field].includes(card[field]))
-				return true;
-		} else {
-			if (query[field] === card[field])
-				return true;
-		}
+		if (arrayFrom(query[field]).includes(card[field]))
+			return true;
 	}
 
 	return false;
@@ -283,13 +291,13 @@ function setOptions(question) {
 		if (question.hasOwnProperty("include") && Object.keys(question.include).length > 0 && !cardMatches(card, question.include))
 			continue;
 		
-		if (cardMatches(card, config.global_exclude))
+		if (cardMatches(card, config.globalExclude))
 			continue;
 		
-		if (Object.keys(config.global_include).length > 0 && !cardMatches(card, config.global_include))
+		if (Object.keys(config.globalInclude).length > 0 && !cardMatches(card, config.globalInclude))
 			continue;
 
-		if (!card.hasOwnProperty(question.questionField))
+		if (!arrayFrom(question.questionField).every((figure) => card.hasOwnProperty(figure)))
 			continue;
 
 		if (!card.hasOwnProperty(question.answerField))
@@ -299,10 +307,9 @@ function setOptions(question) {
 	}
 
 	for (const card of options) {
-		if (answers.includes(card[question.answerField])) 
-			continue;
-
-		answers.push(card[question.answerField])
+		let answer = String(card[question.answerField]);
+		if (!answers.includes(answer)) 
+			answers.push(answer)
 	}
 
 	answers.sort();
@@ -319,101 +326,117 @@ function setOptions(question) {
 
 
 function innerHtmlFromCardField(card, question) {
-	switch (question.questionField) {
-		case 'imagesrc':
-			let cardWidth = 420;
-			let cardHeight = 597;
-			let windowOffsetX = 0;
-			let windowOffsetY = 150;
-			let borderRadius = 0;
+	let result = '';
+	let figures = arrayFrom(question.questionField);
 
-			switch (card.type_name) {
-				case 'Investigator':
-				case 'Agenda':
-				case 'Act':
-					cardWidth = 569;
-					cardHeight = 440;
-					windowOffsetY = 110;
-					break;
-			}
-			
-			let windowWidth = cardWidth;
-			let windowHeight = cardHeight;
-			
-			if (question.answerField != 'name') {
-				windowHeight -= 22;
-			} else {
-				windowWidth = 300;
-				windowHeight = 250;
-				windowOffsetY = 93;
-				borderRadius = 50;
+	for (const figure of figures) {
+		switch (figure) {
+			case 'imagesrc':
+				let cardWidth = 420;
+				let cardHeight = 597;
+				let windowOffsetX = 0;
+				let windowOffsetY = 150;
+				let borderRadius = 0;
+	
 				switch (card.type_name) {
-					case 'Event':
-						windowOffsetY = 130;
-						break;
-						
-					case 'Enemy':
-						cardWidth = 525;
-						cardHeight = 747;
-						windowOffsetY = -260;
-						break;
-						
 					case 'Investigator':
-						windowOffsetX = 131;
-						windowOffsetY = 40;
-						break;
-						
-					case 'Treachery':
-						cardWidth = 525;
-						cardHeight = 747;
-						windowOffsetY = 180;
+					case 'Agenda':
+					case 'Act':
+						cardWidth = 569;
+						cardHeight = 408;
+						windowOffsetY = 110;
 						break;
 				}
-			}
-			
-			return `\
-<div style="\
-width: ${windowWidth}px; \
-height: ${windowHeight}px; \
-overflow: hidden; \
-box-shadow: inset 0 0 20px black; \
-border-radius: ${borderRadius}%; \
-border: 1px solid #4a4a4a;">\
-<img style="\
-position: relative; \
-width: ${cardWidth}px; \
-height: ${cardHeight}px; \
-margin: ${windowOffsetY}px 0 0 ${windowOffsetX}px;" \
-src="https://arkhamdb.com${card[question.questionField]}">\
-</div>`
+				
+				let windowWidth = cardWidth;
+				let windowHeight = cardHeight;
+				
+				if (question.answerField !== 'name') {
+					windowHeight -= 22;
+				} else {
+					windowWidth = 300;
+					windowHeight = 250;
+					windowOffsetY = 93;
+					borderRadius = 50;
+					switch (card.type_name) {
+						case 'Event':
+							windowOffsetY = 130;
+							break;
+							
+						case 'Enemy':
+							cardWidth = 525;
+							cardHeight = 747;
+							windowOffsetY = -260;
+							break;
+							
+						case 'Investigator':
+							windowOffsetX = 131;
+							windowOffsetY = 40;
+							break;
+							
+						case 'Treachery':
+							cardWidth = 525;
+							cardHeight = 747;
+							windowOffsetY = 180;
+							break;
+					}
+				}
+				
+				result += `\
+	<div style="\
+	width: ${windowWidth}px; \
+	height: ${windowHeight}px; \
+	overflow: hidden; \
+	box-shadow: inset 0 0 20px black; \
+	border-radius: ${borderRadius}%; \
+	border: 1px solid #4a4a4a;">\
+	<img style="\
+	position: relative; \
+	width: ${cardWidth}px; \
+	height: ${cardHeight}px; \
+	margin: ${windowOffsetY}px 0 0 ${windowOffsetX}px;" \
+	src="https://arkhamdb.com${card[figure]}">\
+	</div>`
+				break;
+	
+			case 'text':
+			case 'real_text':
+			case 'flavor':
+				let realText = card[figure];
+				realText = "<p>" + realText + "</p>";
+				realText = realText.replace(/\n/g, '</p><p>');
+				realText = realText.replaceAll('[[', '<b><i>');
+				realText = realText.replaceAll(']]', '</b></i>');
+				realText = realText.replace(/\[(\w+)\]/g, (match, name) => {
+				    const capitalizedName = name
+											.replaceAll('_', ' ')
+											.split(' ')
+											.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+											.join(' ');
+				    return `<span class="icon-${name}" title="${capitalizedName}"></span>`;
+				});
 
-		case 'text':
-		case 'real_text':
-		case 'flavor':
-			let realText = card[question.questionField];
-			realText = "<p>" + realText + "</p>";
-			realText = realText.replace(/\n/g, '</p><p>');
-			realText = realText.replaceAll('[[', '<b><i>');
-			realText = realText.replaceAll(']]', '</b></i>');
-			realText = realText.replace(/\[(\w+)\]/g, (match, name) => {
-			    const capitalizedName = name
-										.replaceAll('_', ' ')
-										.split(' ')
-										.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-										.join(' ');
-			    return `<span class="icon-${name}" title="${capitalizedName}"></span>`;
-			});
-			realText = realText.replaceAll(card.name, `<span style="color: DarkGray;"><i>(this card)</i></span>`);
-			
-			if (question.questionField === 'flavor') {
-				realText = "<i>" + realText + "</i>";
-			}
-			return realText;
+				if (question.answerField === 'name') {
+					realText = realText.replaceAll(card.name, `<span style="color: DarkGray;"><i>(this card)</i></span>`);
+				}
+				
+				if (figure === 'flavor') {
+					realText = "<i>" + realText + "</i>";
+				}
+				result += realText;
+				break;
+	
+			case 'name':
+				result += '<p style="text-align: center; font-family: \'Julius Sans One\', sans-serif;">' + card[figure] + '</p>'
+				break;
 
-		case 'name':
-			return '<p style="text-align: center; font-family: \'Julius Sans One\', sans-serif;">' + card[question.questionField] + '</p>'
+			default:
+				result += "<p>" + card[figure] + "</p>";
+				break;
+		}
 	}
-	return "<p>" + card[question.questionField] + "</p>";
+
+	return result;
 }
 
 let question = null;
@@ -443,6 +466,7 @@ function nextQuestion() {
 	
 	const figureElement = document.getElementById('figure');
 	figureElement.innerHTML = innerHtmlFromCardField(answerCard, question);
+	figureElement.classList.toggle('apply-border', !arraysEqual(arrayFrom(question.questionField), [ 'imagesrc' ]));
 }
 
 
@@ -489,7 +513,7 @@ document.getElementById('myForm').addEventListener('submit', (event) => {
 	inputElement.value = '';
 	updateSubmit();
 
-	if (value === answerCard[question.answerField]) {
+	if (value == answerCard[question.answerField]) {
 		setResultCorrect(answerCard);
 		incrementScore();
 		nextQuestion();
@@ -534,19 +558,8 @@ resetEditorElement.addEventListener('click', () => {
 	document.execCommand('insertText', false, baseConfigText);
 });
 
+
+
 updateHighscore();
 nextBackground();
 nextQuestion();
-
-let icons = [];
-const regex = /\[(?!\[\[)(.*?)(?<!\]\])\]/g;
-let match;
-for (const card of cardsDb) {
-	if (card.hasOwnProperty("real_text")) {
-		const text = card.real_text;
-		while ((match = regex.exec(text)) !== null) {
-			if (!icons.includes(match[1]))
-				icons.push(match[1]);
-		}
-	}
-}
