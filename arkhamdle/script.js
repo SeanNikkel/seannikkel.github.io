@@ -125,13 +125,17 @@ function arraysEqual(a, b) {
 const openEditorElement = document.getElementById('open-editor');
 
 const configCachekey = "arkhamdle_config";
+let storedConfigText = null;
+let baseConfigText = null;
 function setConfig(text) {
-	localStorage.setItem(configCachekey, text);
+	if (baseConfigText == text){
+		localStorage.removeItem(configCachekey);
+	} else {
+		localStorage.setItem(configCachekey, text);
+	}
 	location.reload();
 }
 
-let storedConfigText = null;
-let baseConfigText = null;
 async function getConfig() {
 	const response = await fetch('config.json');
 	baseConfigText = await response.text();
@@ -139,7 +143,6 @@ async function getConfig() {
 	storedConfigText = localStorage.getItem(configCachekey);
 	
 	if (!storedConfigText) {
-		localStorage.setItem(configCachekey, baseConfigText);
 		storedConfigText = baseConfigText;
 		return JSON.parse(storedConfigText);
 	}
@@ -428,7 +431,11 @@ src="https://arkhamdb.com${card[figure]}">\
 				break;
 	
 			case 'name':
-				result += '<p style="text-align: center; font-family: \'Julius Sans One\', sans-serif;">' + card[figure] + '</p>'
+				let cardName = card[figure];
+				if (card.xp) {
+					cardName += ` (${card.xp})`;
+				}
+				result += `<p style="text-align: center; font-family: 'Julius Sans One', sans-serif;">${cardName}</p>`
 				break;
 
 			default:
