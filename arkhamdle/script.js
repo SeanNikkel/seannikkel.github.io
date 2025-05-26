@@ -335,8 +335,8 @@ function innerHtmlFromCardField(card, question) {
 				let cardWidth = 420;
 				let cardHeight = 597;
 				let windowOffsetX = 0;
-				let windowOffsetY = 150;
-				let borderRadius = 0;
+				let windowOffsetY = 0;
+				let borderRadius = "20px";
 	
 				switch (card.type_name) {
 					case 'Investigator':
@@ -344,59 +344,60 @@ function innerHtmlFromCardField(card, question) {
 					case 'Act':
 						cardWidth = 569;
 						cardHeight = 408;
-						windowOffsetY = 110;
 						break;
 				}
 				
 				let windowWidth = cardWidth;
 				let windowHeight = cardHeight;
 				
-				if (question.answerField !== 'name') {
+				if (question.answerField === 'pack_name') {
 					windowHeight -= 22;
 				} else {
 					windowWidth = 300;
 					windowHeight = 250;
-					windowOffsetY = 93;
-					borderRadius = 50;
+					windowOffsetY = -69;
+					borderRadius = "50%";
 					switch (card.type_name) {
 						case 'Event':
-							windowOffsetY = 130;
+							windowOffsetY = -10;
 							break;
 							
 						case 'Enemy':
 							cardWidth = 525;
 							cardHeight = 747;
-							windowOffsetY = -260;
+							windowOffsetY = -472;
 							break;
 							
 						case 'Investigator':
 							windowOffsetX = 131;
-							windowOffsetY = 40;
+							windowOffsetY = -70;
 							break;
 							
 						case 'Treachery':
 							cardWidth = 525;
 							cardHeight = 747;
-							windowOffsetY = 180;
+							windowOffsetY = -50;
 							break;
 					}
 				}
 				
 				result += `\
-	<div style="\
-	width: ${windowWidth}px; \
-	height: ${windowHeight}px; \
-	overflow: hidden; \
-	box-shadow: inset 0 0 20px black; \
-	border-radius: ${borderRadius}%; \
-	border: 1px solid #4a4a4a;">\
-	<img style="\
-	position: relative; \
-	width: ${cardWidth}px; \
-	height: ${cardHeight}px; \
-	margin: ${windowOffsetY}px 0 0 ${windowOffsetX}px;" \
-	src="https://arkhamdb.com${card[figure]}">\
-	</div>`
+<div style="\
+width: ${windowWidth}px; \
+height: ${windowHeight}px; \
+overflow: hidden; \
+box-shadow: inset 0 0 20px black; \
+border-radius: ${borderRadius}; \
+border: 1px solid #4a4a4a;">\
+<img style="\
+position: relative; \
+transform: translateX(-50%); \
+left: 50%; \
+width: ${cardWidth}px; \
+height: ${cardHeight}px; \
+margin: ${windowOffsetY}px 0 0 ${windowOffsetX}px;" \
+src="https://arkhamdb.com${card[figure]}">\
+</div>`
 				break;
 	
 			case 'text':
