@@ -271,6 +271,10 @@ function incrementScore() {
 
 }
 
+function incrementLocalStorage(key) {
+	localStorage.setItem(key, Number(localStorage.getItem(key)) + 1);
+}
+
 
 
 function cardMatches(card, query) {
@@ -529,12 +533,14 @@ document.getElementById('myForm').addEventListener('submit', (event) => {
 		setResultCorrect(answerCard);
 		incrementScore();
 		nextQuestion();
+		incrementLocalStorage('arkhamdle_questions_answered_correctly');
 	} else {
 		setResultIncorrect(answerCard);
 		setScore(0);
 		nextQuestion();
 		nextBackground();
 	}
+	incrementLocalStorage('arkhamdle_questions_answered');
 });
 
 const editorContainerElement = document.getElementById('editor-container');
