@@ -336,30 +336,32 @@ function innerHtmlFromCardField(card, question) {
 		switch (figure) {
 			case 'imagesrc':
 				let cardWidth = 420;
-				let cardHeight = 597;
+				let cardAspectRatio = 0.704;
 				let windowOffsetX = 0;
 				let windowOffsetY = 0;
-				let borderRadius = "20px";
+				let borderRadius = 5;
 	
 				switch (card.type_name) {
 					case 'Investigator':
 					case 'Agenda':
 					case 'Act':
 						cardWidth = 569;
-						cardHeight = 408;
+						cardAspectRatio = 1.395;
 						break;
 				}
 				
-				let windowWidth = cardWidth;
-				let windowHeight = cardHeight;
+				let windowWidth = 300;
+				let windowAspectRatio = 1.2;
+				let imgHtml = null;
 				
 				if (question.answerField === 'pack_name') {
-					windowHeight -= 22;
+					let altWindowHeight = windowWidth / windowAspectRatio;
+					windowAspectRatio = 1 / (1 / cardAspectRatio - 0.05);
+					windowWidth = Math.max(windowWidth, altWindowHeight * windowAspectRatio);
+					imgHtml = `<img style="width: 100%; aspect-ratio: ${cardAspectRatio};" src="https://arkhamdb.com${card[figure]}">`;
 				} else {
-					windowWidth = 300;
-					windowHeight = 250;
 					windowOffsetY = -69;
-					borderRadius = "50%";
+					borderRadius = 50;
 					switch (card.type_name) {
 						case 'Event':
 							windowOffsetY = -10;
@@ -367,7 +369,6 @@ function innerHtmlFromCardField(card, question) {
 							
 						case 'Enemy':
 							cardWidth = 525;
-							cardHeight = 747;
 							windowOffsetY = -472;
 							break;
 							
@@ -378,28 +379,31 @@ function innerHtmlFromCardField(card, question) {
 							
 						case 'Treachery':
 							cardWidth = 525;
-							cardHeight = 747;
-							windowOffsetY = -50;
+							windowOffsetX = 3;
+							windowOffsetY = -30;
 							break;
 					}
-				}
-				
-				result += `\
-<div style="\
-width: ${windowWidth}px; \
-height: ${windowHeight}px; \
-overflow: hidden; \
-box-shadow: inset 0 0 20px black; \
-border-radius: ${borderRadius}; \
-border: 1px solid #4a4a4a;">\
+					imgHtml = `\
 <img style="\
 position: relative; \
 transform: translateX(-50%); \
 left: 50%; \
 width: ${cardWidth}px; \
-height: ${cardHeight}px; \
+aspect-ratio: ${cardAspectRatio}; \
 margin: ${windowOffsetY}px 0 0 ${windowOffsetX}px;" \
-src="https://arkhamdb.com${card[figure]}">\
+src="https://arkhamdb.com${card[figure]}">`
+				}
+				
+				result += `\
+<div style="\
+width: ${windowWidth}px; \
+max-width: 100%; \
+aspect-ratio: ${windowAspectRatio}; \
+overflow: hidden; \
+box-shadow: inset 0 0 20px black; \
+border-radius: ${borderRadius}%; \
+border: 1px solid #4a4a4a;">\
+${imgHtml}\
 </div>`
 				break;
 	
@@ -564,6 +568,13 @@ resetEditorElement.addEventListener('click', () => {
 	editorElement.select();
 	document.execCommand('delete', false, null);
 	document.execCommand('insertText', false, baseConfigText);
+});
+
+editorElement.addEventListener('keydown', function(e) {
+	if (e.key != 'Tab') 
+		return;
+	e.preventDefault();
+	document.execCommand('insertText', false, '\t');
 });
 
 

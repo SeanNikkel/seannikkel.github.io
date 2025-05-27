@@ -1,72 +1,72 @@
 {
-    "questions": [
-        {
-            "question": "What is the name of the card with this illustration?",
-            "questionField": "imagesrc",
-            "answerField": "name",
-            "weight": 15,
-            "exclude": {
-                "type_name": [ "Act", "Location", "Story", "Agenda", "Scenario" ],
-                "code": [ "03241b", "06349", "06350", "90001", "90008", "90024" ]
-            }
-        },
-        {
-            "question": "What is the name of the card with this description?",
-            "questionField": "real_text",
-            "answerField": "name",
-            "weight": 10
-        },
-        {
-            "question": "What is the name of the card with this flavor text?",
-            "questionField": "flavor",
-            "answerField": "name",
-            "weight": 7
-        },
-        {
-            "question": "What pack is this card from?",
-            "questionField": "imagesrc",
-            "answerField": "pack_name",
-            "weight": 5
-        },
-        {
-            "question": "What type of card is this?",
-            "questionField": "name",
-            "answerField": "type_name",
-            "weight": 3,
-            "exclude": {
-                "code": [ "03241b" ]
-            }
-        },
-        {
-            "question": "What is the resource cost of this card?",
-            "questionField": [ "name", "text" ],
-            "answerField": "cost",
-            "weight": 1
-        },
-        {
-            "question": "What is the XP cost of this card?",
-            "questionField": [ "name", "text" ],
-            "answerField": "xp",
-            "weight": 1
-        }
-    ],
-    "globalExclude": {
-    },
-    "globalInclude": {
-    },
-    "includeEncounterCards": 1,
-    "backgrounds": [
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Galata_Pixoloid_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Banco-de-la-Provincia_Pixoloid_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Westminster-Abbey_Pixoloid_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Tower-of-London_Pixoloid_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_The-Tower-Bridge_Pixoloid_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Gran-Teatro-de-La-Habana_PixoloidStudios_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Cabildo-Avenida-de-Mayo_Pixoloid_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Coterie-Halls_PixoloidStudios_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Coterie-Library_PixoloidStudios_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Congress-Chamber_PixoloidStudios_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Casa-Rosada_Pixoloid_Final.jpg",
-        "https://pixoloid.net/wp-content/uploads/2022/10/AHC-K1230-D4794_33030_MiskatonicUniversitypres_PixoloidStudiosLtd.jpg"
-    ]
+	"questions": [
+		{
+			"question": "What is the name of the card with this illustration?",
+			"questionField": "imagesrc",
+			"answerField": "name",
+			"weight": 15,
+			"exclude": {
+				"type_name": [ "Act", "Location", "Story", "Agenda", "Scenario" ],
+				"code": [ "03241b", "06349", "06350", "52024", "90001", "90008", "90024" ]
+			}
+		},
+		{
+			"question": "What is the name of the card with this description?",
+			"questionField": "real_text",
+			"answerField": "name",
+			"weight": 10
+		},
+		{
+			"question": "What is the name of the card with this flavor text?",
+			"questionField": "flavor",
+			"answerField": "name",
+			"weight": 7
+		},
+		{
+			"question": "What pack is this card from?",
+			"questionField": "imagesrc",
+			"answerField": "pack_name",
+			"weight": 5
+		},
+		{
+			"question": "What type of card is this?",
+			"questionField": "name",
+			"answerField": "type_name",
+			"weight": 3,
+			"exclude": {
+				"code": [ "03241b" ]
+			}
+		},
+		{
+			"question": "What is the resource cost of this card?",
+			"questionField": [ "name", "text" ],
+			"answerField": "cost",
+			"weight": 1
+		},
+		{
+				"question": "What is the XP cost of this card?",
+			"questionField": [ "name", "text" ],
+			"answerField": "xp",
+			"weight": 1
+		}
+	],
+	"globalExclude": {
+	},
+	"globalInclude": {
+	},
+	"includeEncounterCards": 1,
+	"backgrounds": [
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Galata_Pixoloid_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Banco-de-la-Provincia_Pixoloid_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Westminster-Abbey_Pixoloid_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Tower-of-London_Pixoloid_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_The-Tower-Bridge_Pixoloid_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Gran-Teatro-de-La-Habana_PixoloidStudios_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Cabildo-Avenida-de-Mayo_Pixoloid_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Coterie-Halls_PixoloidStudios_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Coterie-Library_PixoloidStudios_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC70_B2-Congress-Chamber_PixoloidStudios_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/11/AHC_AHC-K0-D4800_Casa-Rosada_Pixoloid_Final.jpg",
+		"https://pixoloid.net/wp-content/uploads/2022/10/AHC-K1230-D4794_33030_MiskatonicUniversitypres_PixoloidStudiosLtd.jpg"
+	]
 }
