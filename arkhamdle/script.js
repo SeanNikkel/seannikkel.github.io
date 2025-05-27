@@ -439,11 +439,7 @@ ${imgHtml}\
 				break;
 	
 			case 'name':
-				let cardName = card[figure];
-				if (card.xp) {
-					cardName += ` (${card.xp})`;
-				}
-				result += `<p style="text-align: center; font-family: 'Julius Sans One', sans-serif;">${cardName}</p>`
+				result += `<p style="text-align: center; font-family: 'Julius Sans One', sans-serif;">${card[figure]}</p>`
 				break;
 
 			default:
