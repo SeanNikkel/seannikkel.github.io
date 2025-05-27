@@ -540,7 +540,7 @@ openEditorElement.addEventListener('click', () => {
 	openEditorElement.style.display = 'none';
 });
 
-document.addEventListener('click', (event) => {
+document.addEventListener('mousedown', (event) => {
 	if (editorContainerElement.style.display === 'flex' &&
 		!editorContainerElement.contains(event.target) &&
 		event.target !== openEditorElement) {
